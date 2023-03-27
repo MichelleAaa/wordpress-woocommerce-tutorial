@@ -11,17 +11,54 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: e-commerce, custom-menu, custom-logo, featured-images, footer-widgets, theme-options, translation-ready, blog, right-sidebar, sticky-post, threaded-comments
 */
 
-.top-bar {
-    background: red;
-    height: 70px;
+/* rajdhani-regular - latin */
+@font-face {
+    font-family: 'Rajdhani';
+    font-style: normal;
+    font-weight: 400;
+    src: url('fonts/rajdhani/rajdhani-v15-latin-regular.woff');
 }
 
-.brand {
-    background: green;
+/* rajdhani-500 - latin */
+@font-face {
+    font-family: 'Rajdhani';
+    font-style: normal;
+    font-weight: 500;
+    src: url('fonts/rajdhani/rajdhani-v15-latin-500.woff');
 }
 
-.second-column {
-    background: yellow;
+/* rajdhani-600 - latin */
+@font-face {
+    font-family: 'Rajdhani';
+    font-style: normal;
+    font-weight: 600;
+    src: url('fonts/rajdhani/rajdhani-v15-latin-600.woff');
+}
+
+/* rajdhani-700 - latin */
+@font-face {
+    font-family: 'Rajdhani';
+    font-style: normal;
+    font-weight: 700;
+    src: url('fonts/rajdhani/rajdhani-v15-latin-700.woff');
+}
+
+/* seaweed-script-regular - latin */
+@font-face {
+    font-family: 'Seaweed Script';
+    font-style: normal;
+    font-weight: 400;
+    src: url('fonts/seaweed-script/seaweed-script-v13-latin-regular.woff');
+}
+
+body {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 400;
+}
+
+/* Header - Main Menu */
+.main-menu {
+    padding: 0;
 }
 
 .main-menu ul {
@@ -35,6 +72,58 @@ Tags: e-commerce, custom-menu, custom-logo, featured-images, footer-widgets, the
 .main-menu ul li {
     display: inline;
     margin: 0 5px 0 0;
+}
+
+.main-menu ul li:last-child {
+    margin: 0;
+}
+
+.main-menu .dropdown:hover>.dropdown-menu,
+.main-menu .dropup:hover>.dropdown-menu {
+    display: block;
+}
+
+.main-menu .navbar-toggler-icon {
+    background-image: url('img/hamburger-menu.svg');
+}
+
+/* Search Form */
+.search-form button {
+    background-image: url('img/search.svg');
+    height: 23px;
+    width: 23px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+}
+
+.search-form input[type="search"] {
+    background-color: #fff;
+    border: none;
+    font-weight: 500;
+    font-size: 110%;
+    padding: 0.3rem 1rem;
+    margin-right: 0.3rem;
+}
+
+/* Cart */
+.cart .cart-icon {
+    background: url('img/cart.svg');
+    background-repeat: no-repeat;
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.cart .items {
+    background: #CA2424;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
 }
 
 /* Footer - Footer Menu */
@@ -65,6 +154,23 @@ Tags: e-commerce, custom-menu, custom-logo, featured-images, footer-widgets, the
 }
 
 /* WooCommerce */
+
+/* Grid System */
+.woocommerce .col2-set .col-1,
+.woocommerce .col2-set .col-2 {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+@media all and (max-width: 767px) {
+
+    .woocommerce .col2-set .col-1,
+    .woocommerce .col2-set .col-2 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+}
 
 /* Shop */
 
@@ -187,6 +293,24 @@ Tags: e-commerce, custom-menu, custom-logo, featured-images, footer-widgets, the
 
 .woocommerce-cart table.cart td.actions .coupon .input-text {
     width: 150px;
+}
+
+/* Checkout */
+.woocommerce form .form-row {
+    display: block;
+}
+
+.woocommerce-checkout #customer_details {
+    margin-bottom: 20px;
+}
+
+.woocommerce table.shop_table {
+    border-collapse: collapse;
+}
+
+.woocommerce table.shop_table thead {
+    background-color: #D2335B;
+    color: #fff;
 }
 
 /* General */

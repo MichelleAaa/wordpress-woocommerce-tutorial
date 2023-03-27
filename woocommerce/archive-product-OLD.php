@@ -15,6 +15,9 @@
  * @version 3.4.0
  */
 
+
+// NOTE: This is one method of overriding WooCommerce template files. It's not preferred over the method of using action hooks/filters, becuase each time there's a change to the woocommerce template files you would have to go back and update these files. So this file is no longer in use, and instead, changes are being made with the wc-modifications.php file in the inc folder.
+
 defined( 'ABSPATH' ) || exit;
 
 get_header( 'shop' );

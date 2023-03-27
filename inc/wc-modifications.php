@@ -7,6 +7,8 @@
  * @package Fancy Lab
  */
 
+//  NOTE: Instead of using template overrides, this is the preferred method of modifying the woocommerce base templates. We use action hooks and filters.
+
 function fancy_lab_wc_modify(){
     /** 
 	* Modify WooCommerce opening and closing HTML tags

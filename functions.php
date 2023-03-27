@@ -8,7 +8,18 @@
  * @package Fancy Lab
  */
 
+/**
+ * Register Custom Navigation Walker
+ */
+function register_navwalker(){
+	require_once get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
+}
+add_action( 'after_setup_theme', 'register_navwalker' );
 
+/**
+* Customizer additions.
+*/
+require_once get_template_directory() . '/inc/customizer.php';
 
 function fancy_lab_scripts(){
 
@@ -19,6 +30,9 @@ function fancy_lab_scripts(){
     wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/inc/bootstrap.min.css', array(), '4.3.1', 'all' );
 // The first parameter is any name you make up. Second is the path to the file (get_stylesheet_uri() gets the path to style.css) -- get_template_directory_uri() would be needed if you have another css file to load. Third is whether there's a dependency. -- you would list just the file name if that was the case. Fourth is the version of our stylesheet. (the function fileemtime() returns the file modification time). If you submit a theme, just use something like '1.0' instead of filemtime(). Fifth is what kind of media the css file refers to. 
     wp_enqueue_style( 'fancy-lab-style', get_stylesheet_uri(), array(), filemtime( get_template_directory() . '/style.css' ), 'all' );
+
+	// Google Fonts
+ 	// wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Rajdhani:400,500,600,700|https://fonts.googleapis.com/css?family=Seaweed+Script' );
 }
 
 add_action( 'wp_enqueue_scripts', 'fancy_lab_scripts' );
@@ -61,6 +75,15 @@ function fancy_lab_config(){
 		add_theme_support( 'wc-product-gallery-zoom' );
 		add_theme_support( 'wc-product-gallery-lightbox' );
 		add_theme_support( 'wc-product-gallery-slider' );
+		// custom-log allows us to use a custom logo in our theme. -- you can now go to wp-admin - appearance - customize - site identity - now there's an option to upload a logo
+		add_theme_support( 'custom-logo', array(
+			'height' 		=> 85,
+			'width'			=> 160,
+			'flex-height'	=> true,
+			'flex-width'	=> true,
+			//the owner can still upload a different sized image.
+		) );
+
 // from: https://codex.wordpress.org/Content_Width
 		if ( ! isset( $content_width ) ) {
 			$content_width = 600;
@@ -71,4 +94,21 @@ add_action( 'after_setup_theme', 'fancy_lab_config', 0 );//0 means that everythi
 
 if( class_exists( 'WooCommerce' )){
 	require get_template_directory() . '/inc/wc-modifications.php';
+}
+
+/**
+ * Show cart contents / total Ajax -- this shows the updated cart total without needing to re-load the page.
+ */
+add_filter( 'woocommerce_add_to_cart_fragments', 'fancy_lab_woocommerce_header_add_to_cart_fragment' );
+
+function fancy_lab_woocommerce_header_add_to_cart_fragment( $fragments ) {
+	global $woocommerce;
+
+	ob_start();
+
+	?>
+	<span class="items"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+	<?php
+	$fragments['span.items'] = ob_get_clean();
+	return $fragments;
 }
