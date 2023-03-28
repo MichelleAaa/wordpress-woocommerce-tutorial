@@ -3,13 +3,59 @@
 Template Name: Home Page
 */
 
-get_header();
-?>
+get_header(); ?>
+
 		<div class="content-area">
 			<main>
 				<section class="slider">
-					<div class="container">
-						<div class="row">Slider</div>
+					<div class="flexslider">
+					  <ul class="slides">
+						<?php  
+							// Getting data from Customizer to display the Slider section
+							// set_slider_page1 is for example what we set up for the first slide input fields in the customizer.php. We can access it with get_theme_mod().
+							// slider_page is an array we are creating to add index values into.
+						for ($i=1; $i < 4; $i++) : 
+							$slider_page[$i] 				= get_theme_mod( 'set_slider_page' . $i );
+							$slider_button_text[$i]			= get_theme_mod( 'set_slider_button_text' . $i ); 
+							$slider_button_url[$i]			= get_theme_mod( 'set_slider_button_url' . $i );
+						endfor;
+
+							//post__in defines the id's of the pages we want to display using the loop. It accepts an array of id's, separated by commas.
+						$args = array(
+							'post_type'			=> 'page',
+							'posts_per_page'	=> 3,
+							'post__in'			=> $slider_page,
+							'orderby'			=> 'post__in',
+						);
+
+						$slider_loop = new WP_Query( $args );
+						$j = 1;
+						if( $slider_loop->have_posts() ):
+							while( $slider_loop->have_posts() ):
+								$slider_loop->the_post();
+						?>
+						    <li>
+							<!-- Gets the featured image of each post -->
+						      <?php the_post_thumbnail( 'fancy-lab-slider', array( 'class' => 'img-fluid' ) ); ?>
+						      <div class="container">
+						      	<div class="slider-details-container">
+						      		<div class="slider-title">
+						      			<h1><?php the_title(); ?></h1>
+						      		</div>
+						      		<div class="slider-description">
+						      			<div class="subtitle"><?php the_content(); ?></div>
+						      			<a class="link" href="<?php echo $slider_button_url[$j]; ?>"><?php echo $slider_button_text[$j]; ?></a>
+						      		</div>
+						      	</div>
+						      </div>
+						    </li>
+						<?php 
+						$j++;
+						endwhile;
+						wp_reset_postdata();
+						endif;
+						?>
+					  </ul>
 					</div>
 				</section>
 				<section class="popular-products">
