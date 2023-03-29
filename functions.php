@@ -89,9 +89,11 @@ function fancy_lab_config(){
 			//the owner can still upload a different sized image.
 		) );
 
+		add_theme_support( 'post-thumbnails' ); // You don't need the support if woocommerce is active, but it's ideal to include it in case the user deactivated it.
 		//Add a custom image size:
 		//first parameter is the name you make up. Second is the width. Third is the height of the image. Cropping instructions are center/center.
 		add_image_size( 'fancy-lab-slider', 1920, 800, array( 'center', 'center' ) );
+		add_image_size( 'fancy-lab-blog', 960, 640, array( 'center', 'center' ) );
 
 // from: https://codex.wordpress.org/Content_Width
 		if ( ! isset( $content_width ) ) {

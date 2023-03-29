@@ -44,7 +44,7 @@
 						<div class="second-column col-md-9 col-12 col-lg-10">
 							<div class="row">
 								<?php if( class_exists( 'WooCommerce' ) ): ?>
-								<div class="acount col-12">
+								<div class="account col-12">
 <!-- Menu of two items - if the user is logged in, they will have My Account and Logout. If they are not logged in, there will be a menu link to login or register. -->
 									<div class="navbar-expand">
 										<ul class="navbar-nav float-left">
