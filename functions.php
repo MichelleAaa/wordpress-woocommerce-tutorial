@@ -98,7 +98,10 @@ function fancy_lab_config(){
 // from: https://codex.wordpress.org/Content_Width
 		if ( ! isset( $content_width ) ) {
 			$content_width = 600;
-		}		
+		}
+
+		// This ensures the title tag shows in the header:
+		add_theme_support('title-tag');		
 }
 
 add_action( 'after_setup_theme', 'fancy_lab_config', 0 );//0 means that everything in the fancy_lab_config function will execute right after the theme is set up.
