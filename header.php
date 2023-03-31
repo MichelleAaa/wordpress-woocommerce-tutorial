@@ -51,15 +51,15 @@
 											<?php if( is_user_logged_in() ) : ?>
 											<li>
 	<!-- you could enter my-account as the href, but we could change the name of the page, so it's better to use this option:  -->
-												<a href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) ?>" class="nav-link">My Account</a>
+												<a href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) ?>" class="nav-link"><?php _e( 'My Account', 'fancy-lab' ); ?></a>
 											</li>
 											<li>
-												<a href="<?php echo esc_url( wp_logout_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) ) ?>" class="nav-link">Logout</a>
+												<a href="<?php echo esc_url( wp_logout_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) ) ?>" class="nav-link"><?php _e( 'Logout', 'fancy-lab' ); ?></a>
 											</li>
 											<?php else: ?>
 <!-- Note that the below brings up the login/register form. But you have to go into woocommerce - settings - accounts & privacity settings - account creation - allow customers to create an account on the My Account page - this must be checked for a register option to appear here -->
 											<li>
-												<a href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) ?>" class="nav-link">Login / Register</a>
+												<a href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ) ?>" class="nav-link"><?php _e( 'Login / Register', 'fancy-lab' ); ?></a>
 											</li>				
 											<?php endif; ?>
 										</ul>
@@ -75,7 +75,7 @@
 								<div class="col-12">
 									<nav class="main-menu navbar navbar-expand-md navbar-light" role="navigation">
 									<!-- Brand and toggle get grouped for better mobile display -->
-									<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+									<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="<?php _e( 'Toggle navigation', 'fancy-lab' ); ?>">
 										<span class="navbar-toggler-icon"></span>
 									</button>
 								<!-- The theme location is the menu slug -- you set it up as the key in the array in functions.php -->

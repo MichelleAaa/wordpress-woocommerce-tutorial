@@ -55,11 +55,23 @@ function fancy_lab_config(){
     // You can register multiple menus in the array.
     //The value below, Fancy Lab Main Menu, is what's set up in wp-admin, appearance, menus for the menu we created.
 	register_nav_menus(
-        array(
-            'fancy_lab_main_menu' 	=> 'Fancy Lab Main Menu',
-            'fancy_lab_footer_menu' => 'Fancy Lab Footer Menu',
-        )
-    );
+			array(
+				'fancy_lab_main_menu' 	=> __( 'Fancy Lab Main Menu', 'fancy-lab' ),
+				'fancy_lab_footer_menu' => __( 'Fancy Lab Footer Menu', 'fancy-lab' ),
+			)
+		);
+
+	/*
+	* Make theme available for translation.
+	* Translations can be filed in the /languages/ directory.
+	* If you're building a theme based on Fancy Lab, use a find and replace
+	* to change 'fancy-lab' to the name of your theme in all the template files.
+	*/
+	// The textdomain was defined in style.css at the top. We can only have one textdomain in the file if we are submitting the theme.
+	$textdomain = 'fancy-lab';
+	load_theme_textdomain( $textdomain, get_stylesheet_directory() . '/languages/' );
+	// Second parameter is where our translation files will be:
+	load_theme_textdomain( $textdomain, get_template_directory() . '/languages/' );
 
 //This enables woocommerce support with just the first argument.
 //With the second argument, we can pass in some default values.
@@ -125,4 +137,65 @@ function fancy_lab_woocommerce_header_add_to_cart_fragment( $fragments ) {
 	<?php
 	$fragments['span.items'] = ob_get_clean();
 	return $fragments;
+}
+
+/**
+ * Registers a widget area.
+ *
+ * @link https://developer.wordpress.org/reference/functions/register_sidebar/
+ *
+ */
+add_action( 'widgets_init', 'fancy_lab_sidebars' );
+
+// This is going to cause the widgets option to appear in wp-admin - appearance - Widgets.
+function fancy_lab_sidebars(){
+	register_sidebar( array(
+		//name is the name that will appear in the wp-admin area when we set up the sidebar:
+		'name'			=> __( 'Fancy Lab Main Sidebar', 'fancy-lab' ),
+		// id has to be unique. Avoid special characters.
+		'id'			=> 'fancy-lab-sidebar-1',
+		//The description appears in the admin panel
+		'description'	=> __( 'Drag and drop your widgets here', 'fancy-lab' ),
+		// The %$ is from the pre-provided wp theme
+		'before_widget'	=> '<div id="%1$s" class="widget %2$s widget-wrapper">', 
+		'after_widget'	=> '</div>',
+		'before_title'	=> '<h4 class="widget-title">',
+		'after_title'	=> '</h4>',
+	) );
+		register_sidebar( array(
+		'name'			=> __( 'Sidebar Shop', 'fancy-lab' ),
+		'id'			=> 'fancy-lab-sidebar-shop',
+		'description'	=> __( 'Drag and drop your WooCommerce widgets here', 'fancy-lab' ),
+		'before_widget'	=> '<div id="%1$s" class="widget %2$s widget-wrapper">', 
+		'after_widget'	=> '</div>',
+		'before_title'	=> '<h4 class="widget-title">',
+		'after_title'	=> '</h4>',
+	) );	
+	register_sidebar( array(
+		'name'			=> __( 'Footer Sidebar 1', 'fancy-lab' ),
+		'id'			=> 'fancy-lab-sidebar-footer1',
+		'description'	=> __( 'Drag and drop your widgets here', 'fancy-lab' ),
+		'before_widget'	=> '<div id="%1$s" class="widget %2$s widget-wrapper">', 
+		'after_widget'	=> '</div>',
+		'before_title'	=> '<h4 class="widget-title">',
+		'after_title'	=> '</h4>',
+	) );
+	register_sidebar( array(
+		'name'			=> __( 'Footer Sidebar 2', 'fancy-lab' ),
+		'id'			=> 'fancy-lab-sidebar-footer2',
+		'description'	=> __( 'Drag and drop your widgets here', 'fancy-lab' ),
+		'before_widget'	=> '<div id="%1$s" class="widget %2$s widget-wrapper">', 
+		'after_widget'	=> '</div>',
+		'before_title'	=> '<h4 class="widget-title">',
+		'after_title'	=> '</h4>',
+	) );
+	register_sidebar( array(
+		'name'			=> __( 'Footer Sidebar 3', 'fancy-lab' ),
+		'id'			=> 'fancy-lab-sidebar-footer3',
+		'description'	=> __( 'Drag and drop your widgets here', 'fancy-lab' ),
+		'before_widget'	=> '<div id="%1$s" class="widget %2$s widget-wrapper">', 
+		'after_widget'	=> '</div>',
+		'before_title'	=> '<h4 class="widget-title">',
+		'after_title'	=> '</h4>',
+	) );				
 }
